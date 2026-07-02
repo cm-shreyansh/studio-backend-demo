@@ -15,5 +15,5 @@ export default {
   DB_URL: process.env.MONGODB_URI,
   PEER_PORT: process.env.PEER_PORT ? parseInt(process.env.PEER_PORT) : 9000,
   APP_SECRET: process.env.APP_SECRET,
-  WEB_DIST_PATH: path.resolve(__dirname, '../../../web/dist'),
+  // WEB_DIST_PATH: path.resolve(__dirname, '../../../web/dist'),
 };
