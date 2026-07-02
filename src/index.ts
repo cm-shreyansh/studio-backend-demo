@@ -9,6 +9,8 @@ import config from './config/environment.ts';
 // import { createWorker } from './services/mediasoup.ts';
 // import rtcSocketRoutes from './routes/websocket/rtc.socket.ts';
 
+import authApiRoutes from './routes/api/auth.api.ts';
+
 const fastify = Fastify({
   logger: true,
 });
@@ -25,7 +27,7 @@ fastify.register(fastifyCors, {
 
 // fastify.register(fastifyWebsocket);
 
-// fastify.register(rtcSocketRoutes, { prefix: '/ws', worker: worker });
+fastify.register(authApiRoutes, { prefix: '/auth' });
 
 // if (config.NODE_ENV === 'production') {
 //   fastify.register(fastifyStatic, {
@@ -59,6 +61,11 @@ fastify.register(fastifyCors, {
 
 // Initialize Mediasoup (for future SFU use)
 // createWorker();
+
+// fastify.get('/k',  (connection) => {
+//   // 'connection.socket' is a standard 'ws' library instance
+
+// });
 
 // Run the Fastify server!
 fastify.listen({ port: config.PORT }, function (err, address) {
