@@ -1,0 +1,172 @@
+# =====================================================
+# General
+# =====================================================
+
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+
+# =====================================================
+# Environment Files
+# =====================================================
+
+.env
+.env.*
+!.env.example
+
+# =====================================================
+# Logs
+# =====================================================
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =====================================================
+# IDEs
+# =====================================================
+
+.vscode/
+.idea/
+
+# JetBrains
+*.iml
+
+# =====================================================
+# Node.js / Astro / Preact
+# =====================================================
+
+node_modules/
+
+dist/
+build/
+.out/
+.output/
+
+.next/
+.nuxt/
+
+.cache/
+.parcel-cache/
+
+coverage/
+
+*.tsbuildinfo
+
+# Package manager caches
+.pnpm-store/
+.npm/
+.yarn/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# =====================================================
+# Astro
+# =====================================================
+
+.astro/
+
+# =====================================================
+# Go
+# =====================================================
+
+# Compiled binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binaries
+*.test
+
+# Coverage
+*.out
+coverage.out
+
+# Vendor (uncomment if not committing dependencies)
+# vendor/
+
+# =====================================================
+# Flutter
+# =====================================================
+
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+
+build/
+
+.pub/
+.pub-cache/
+
+# Generated files
+**/generated_plugin_registrant.dart
+
+# Android
+**/android/.gradle/
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+**/android/local.properties
+
+# iOS
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+
+# macOS
+**/macos/Pods/
+
+# Linux
+**/linux/flutter/ephemeral/
+
+# Windows
+**/windows/flutter/ephemeral/
+
+# =====================================================
+# Monorepo Tooling
+# =====================================================
+
+.turbo/
+nx-cache/
+.nx/
+
+# Moonrepo
+.moon/cache/
+
+# Task runners
+.cache-loader/
+
+# =====================================================
+# Testing
+# =====================================================
+
+coverage/
+coverage-final.json
+
+# =====================================================
+# Temporary Files
+# =====================================================
+
+tmp/
+temp/
+
+# =====================================================
+# Archives
+# =====================================================
+
+*.zip
+*.tar
+*.tar.gz
+*.rar
