@@ -23,5 +23,5 @@ export const users = mysqlTable('users', {
   // 👇 defaultNow() hata diya
   createdAt: timestamp('created_at').notNull(),
 
-  //   lastActiveAt: timestamp('last_active_at').default(sql`'0000-00-00 00:00:00'`),
+  lastActiveAt: timestamp('last_active_at'),
 });
