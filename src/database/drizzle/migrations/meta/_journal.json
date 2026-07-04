@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1783075515759,
+      "tag": "0000_secret_revanche",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1783078487804,
+      "tag": "0001_premium_natasha_romanoff",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1783079250857,
+      "tag": "0002_eminent_trish_tilby",
+      "breakpoints": true
+    }
+  ]
+}
