@@ -10,6 +10,7 @@ import config from './config/environment.ts';
 // import rtcSocketRoutes from './routes/websocket/rtc.socket.ts';
 
 import authApiRoutes from './routes/api/auth.api.ts';
+import workspaceApiRoutes from './routes/api/workspace.api.ts';
 
 import fastifyJwt from '@fastify/jwt';
 
@@ -40,6 +41,10 @@ fastify.register(fastifyJwt, {
 
 fastify.register(authApiRoutes, {
   prefix: '/auth',
+});
+
+fastify.register(workspaceApiRoutes, {
+  prefix: '/workspace',
 });
 
 // if (config.NODE_ENV === 'production') {
