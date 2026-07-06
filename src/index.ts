@@ -11,6 +11,8 @@ import config from './config/environment.ts';
 
 import authApiRoutes from './routes/api/auth.api.ts';
 
+import fastifyJwt from '@fastify/jwt';
+
 const fastify = Fastify({
   logger: true,
 });
@@ -27,7 +29,18 @@ fastify.register(fastifyCors, {
 
 // fastify.register(fastifyWebsocket);
 
-fastify.register(authApiRoutes, { prefix: '/auth' });
+// fastify.register(authApiRoutes, { prefix: '/auth' });
+
+// fastify.register(fastifyWebsocket);
+
+// ✅ JWT plugin pehle register hoga
+fastify.register(fastifyJwt, {
+  secret: config.JWT_SECRET,
+});
+
+fastify.register(authApiRoutes, {
+  prefix: '/auth',
+});
 
 // if (config.NODE_ENV === 'production') {
 //   fastify.register(fastifyStatic, {

@@ -29,6 +29,13 @@
       "when": 1783147962778,
       "tag": "0003_peaceful_champions",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1783165765225,
+      "tag": "0004_cool_post",
+      "breakpoints": true
     }
   ]
 }

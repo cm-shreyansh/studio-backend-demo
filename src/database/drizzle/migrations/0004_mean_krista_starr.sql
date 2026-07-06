@@ -1,0 +1,1 @@
+ALTER TABLE `users` MODIFY COLUMN `last_active_at` timestamp DEFAULT '0000-00-00 00:00:00';

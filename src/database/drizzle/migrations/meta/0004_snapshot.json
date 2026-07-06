@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "ce6639cf-b11d-4bf3-ab3b-e8aefff66a44",
-  "prevId": "6badbfec-2137-44b8-bd60-4f0038570461",
+  "id": "45f3e4fe-3b6a-432d-9c58-92e06e82fa04",
+  "prevId": "ce6639cf-b11d-4bf3-ab3b-e8aefff66a44",
   "tables": {
     "participant_tracks": {
       "name": "participant_tracks",
@@ -437,11 +437,18 @@
           "name": "workspace_id",
           "type": "varchar(36)",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "email": {
           "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "password_hash": {
+          "name": "password_hash",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,

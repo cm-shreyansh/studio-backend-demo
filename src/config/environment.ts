@@ -24,5 +24,5 @@ export default {
 
   PEER_PORT: process.env.PEER_PORT ? parseInt(process.env.PEER_PORT) : 9000,
 
-  APP_SECRET: process.env.APP_SECRET,
+  JWT_SECRET: process.env.JWT_SECRET!,
 };

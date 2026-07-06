@@ -1,15 +1,30 @@
-import Database from '../config/database.ts';
+import { eq } from 'drizzle-orm';
+
+import db from '../config/database.js';
+import { users } from '../database/drizzle/schema/user.schema.js';
 
 class AuthRepository {
-  database: Database;
-  constructor() {
-    this.database = new Database('Database Connection Established');
+  async findUserByEmail(email: string) {
+    const result = await db.select().from(users).where(eq(users.email, email));
+
+    return result[0] ?? null;
   }
 
-  async findUserByEmail(email: string) {
-    // Query the database to find the user by email
-    // For example, using a SQL query or an ORM method
-    // Return the user object if found, otherwise return null
+  async createUser(user: {
+    id: string;
+    email: string;
+    passwordHash: string;
+    displayName: string;
+  }) {
+    await db.insert(users).values({
+      id: user.id,
+      email: user.email,
+      passwordHash: user.passwordHash,
+      displayName: user.displayName,
+      createdAt: new Date(),
+    });
+
+    return user;
   }
 }
 
