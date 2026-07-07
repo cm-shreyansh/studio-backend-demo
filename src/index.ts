@@ -11,6 +11,7 @@ import config from './config/environment.ts';
 
 import authApiRoutes from './routes/api/auth.api.ts';
 import workspaceApiRoutes from './routes/api/workspace.api.ts';
+import studioApiRoutes from './routes/api/studio.api.ts';
 
 import fastifyJwt from '@fastify/jwt';
 
@@ -45,6 +46,10 @@ fastify.register(authApiRoutes, {
 
 fastify.register(workspaceApiRoutes, {
   prefix: '/workspace',
+});
+
+fastify.register(studioApiRoutes, {
+  prefix: '/studio',
 });
 
 // if (config.NODE_ENV === 'production') {
