@@ -83,6 +83,110 @@ const studioApiRoutes: FastifyPluginAsync = async function (fastify) {
     }
   );
 
+  // Get Studio By Id
+  fastify.get(
+    '/details/:studioId',
+    {
+      preHandler: [authMiddleware],
+    },
+    async (request, reply) => {
+      try {
+        const { studioId } = request.params as {
+          studioId: string;
+        };
+
+        const studio = await studioService.getStudioById(studioId);
+
+        return reply.send({
+          success: true,
+          data: studio,
+        });
+      } catch (error) {
+        return reply.status(404).send({
+          success: false,
+          message: error instanceof Error ? error.message : 'Studio not found',
+        });
+      }
+    }
+  );
+
+  // Update Studio
+  fastify.put(
+    '/:studioId',
+    {
+      preHandler: [authMiddleware],
+    },
+    async (request, reply) => {
+      try {
+        const { studioId } = request.params as {
+          studioId: string;
+        };
+
+        const { name, description } = request.body as {
+          name: string;
+          description?: string;
+        };
+
+        const { userId } = request.user as {
+          userId: string;
+          email: string;
+        };
+
+        const studio = await studioService.updateStudio(
+          studioId,
+          userId,
+          name,
+          description
+        );
+
+        return reply.send({
+          success: true,
+          message: 'Studio updated successfully',
+          data: studio,
+        });
+      } catch (error) {
+        return reply.status(400).send({
+          success: false,
+          message:
+            error instanceof Error ? error.message : 'Studio update failed',
+        });
+      }
+    }
+  );
+
+  // Delete Studio
+  fastify.delete(
+    '/:studioId',
+    {
+      preHandler: [authMiddleware],
+    },
+    async (request, reply) => {
+      try {
+        const { studioId } = request.params as {
+          studioId: string;
+        };
+
+        const { userId } = request.user as {
+          userId: string;
+          email: string;
+        };
+
+        const result = await studioService.deleteStudio(studioId, userId);
+
+        return reply.send({
+          success: true,
+          message: result.message,
+        });
+      } catch (error) {
+        return reply.status(400).send({
+          success: false,
+          message:
+            error instanceof Error ? error.message : 'Studio deletion failed',
+        });
+      }
+    }
+  );
+
   // Get Workspace Studios
   fastify.get(
     '/:workspaceId',

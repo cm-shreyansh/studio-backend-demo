@@ -73,6 +73,77 @@ class StudioService {
       studioCount,
     };
   }
+
+  // Get Studio By Id
+  async getStudioById(studioId: string) {
+    const studio = await this.studioRepository.findStudioById(studioId);
+
+    if (!studio) {
+      throw new Error('Studio not found');
+    }
+
+    return studio;
+  }
+
+  // Update Studio
+  async updateStudio(
+    studioId: string,
+    userId: string,
+    name: string,
+    description?: string
+  ) {
+    const studio = await this.studioRepository.findStudioById(studioId);
+
+    if (!studio) {
+      throw new Error('Studio not found');
+    }
+
+    const member = await this.workspaceRepository.findWorkspaceMember(
+      studio.workspaceId,
+      userId
+    );
+
+    if (!member) {
+      throw new Error('You are not a member of this workspace');
+    }
+
+    if (member.role !== 'owner') {
+      throw new Error('Only workspace owner can update studio');
+    }
+
+    return await this.studioRepository.updateStudio(studioId, {
+      name,
+      description,
+    });
+  }
+
+  // Delete Studio
+  async deleteStudio(studioId: string, userId: string) {
+    const studio = await this.studioRepository.findStudioById(studioId);
+
+    if (!studio) {
+      throw new Error('Studio not found');
+    }
+
+    const member = await this.workspaceRepository.findWorkspaceMember(
+      studio.workspaceId,
+      userId
+    );
+
+    if (!member) {
+      throw new Error('You are not a member of this workspace');
+    }
+
+    if (member.role !== 'owner') {
+      throw new Error('Only workspace owner can delete studio');
+    }
+
+    await this.studioRepository.deleteStudio(studioId);
+
+    return {
+      message: 'Studio deleted successfully',
+    };
+  }
 }
 
 export default StudioService;

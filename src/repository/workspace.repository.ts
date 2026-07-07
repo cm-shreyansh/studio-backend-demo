@@ -78,6 +78,22 @@ class WorkspaceRepository {
 
     return result;
   }
+
+  async updateWorkspace(workspaceId: string, name: string, slug: string) {
+    await db
+      .update(workspaces)
+      .set({
+        name,
+        slug,
+      })
+      .where(eq(workspaces.id, workspaceId));
+
+    return this.findWorkspaceById(workspaceId);
+  }
+
+  async deleteWorkspace(workspaceId: string) {
+    await db.delete(workspaces).where(eq(workspaces.id, workspaceId));
+  }
 }
 
 export default WorkspaceRepository;

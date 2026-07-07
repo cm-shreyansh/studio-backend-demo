@@ -83,6 +83,28 @@ class StudioRepository {
 
     return result[0]?.studioCount ?? 0;
   }
+
+  async updateStudio(
+    studioId: string,
+    data: {
+      name: string;
+      description: string | undefined;
+    }
+  ) {
+    await db
+      .update(studios)
+      .set({
+        name: data.name,
+        description: data.description,
+      })
+      .where(eq(studios.id, studioId));
+
+    return this.findStudioById(studioId);
+  }
+
+  async deleteStudio(studioId: string) {
+    await db.delete(studios).where(eq(studios.id, studioId));
+  }
 }
 
 export default StudioRepository;
