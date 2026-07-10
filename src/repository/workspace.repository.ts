@@ -19,7 +19,7 @@ class WorkspaceRepository {
     id: string;
     workspaceId: string;
     userId: string;
-    role: 'owner' | 'editor' | 'viewer';
+    role: 'owner' | 'producer' | 'editor' | 'viewer';
   }) {
     await db.insert(workspaceMembers).values({
       id: member.id,

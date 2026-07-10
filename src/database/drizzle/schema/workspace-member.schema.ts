@@ -27,7 +27,7 @@ export const workspaceMembers = mysqlTable(
         onDelete: 'cascade',
       }),
 
-    role: mysqlEnum('role', ['owner', 'editor', 'viewer'])
+    role: mysqlEnum('role', ['owner', 'producer', 'editor', 'viewer'])
       .notNull()
       .default('viewer'),
 

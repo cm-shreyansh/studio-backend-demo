@@ -12,6 +12,7 @@ import config from './config/environment.ts';
 import authApiRoutes from './routes/api/auth.api.ts';
 import workspaceApiRoutes from './routes/api/workspace.api.ts';
 import studioApiRoutes from './routes/api/studio.api.ts';
+import sessionApiRoutes from './routes/api/session.api.ts';
 
 import fastifyJwt from '@fastify/jwt';
 
@@ -50,6 +51,10 @@ fastify.register(workspaceApiRoutes, {
 
 fastify.register(studioApiRoutes, {
   prefix: '/studio',
+});
+
+fastify.register(sessionApiRoutes, {
+  prefix: '/session',
 });
 
 // if (config.NODE_ENV === 'production') {

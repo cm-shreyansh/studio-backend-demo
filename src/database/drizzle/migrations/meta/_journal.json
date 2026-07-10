@@ -43,6 +43,13 @@
       "when": 1783336476646,
       "tag": "0005_minor_romulus",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1783663706692,
+      "tag": "0006_loving_thunderbird",
+      "breakpoints": true
     }
   ]
 }
