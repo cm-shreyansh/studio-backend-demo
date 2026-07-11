@@ -25,4 +25,8 @@ export default {
   PEER_PORT: process.env.PEER_PORT ? parseInt(process.env.PEER_PORT) : 9000,
 
   JWT_SECRET: process.env.JWT_SECRET!,
+
+  RESEND_API_KEY: process.env.RESEND_API_KEY!,
+  FROM_EMAIL: process.env.FROM_EMAIL!,
+  FRONTEND_URL: process.env.FRONTEND_URL!,
 };

@@ -11,6 +11,7 @@ import config from './config/environment.ts';
 
 import authApiRoutes from './routes/api/auth.api.ts';
 import workspaceApiRoutes from './routes/api/workspace.api.ts';
+import workspaceInviteApiRoutes from './routes/api/workspace-invite.api.ts';
 import studioApiRoutes from './routes/api/studio.api.ts';
 import sessionApiRoutes from './routes/api/session.api.ts';
 
@@ -19,7 +20,9 @@ import fastifyJwt from '@fastify/jwt';
 const fastify = Fastify({
   logger: true,
 });
+
 // const worker = createWorker();
+
 fastify.register(fastifyCors, {
   origin: [
     'https://dev.castepic.com',
@@ -32,14 +35,12 @@ fastify.register(fastifyCors, {
 
 // fastify.register(fastifyWebsocket);
 
-// fastify.register(authApiRoutes, { prefix: '/auth' });
-
-// fastify.register(fastifyWebsocket);
-
-// ✅ JWT plugin pehle register hoga
+// ✅ JWT plugin
 fastify.register(fastifyJwt, {
   secret: config.JWT_SECRET,
 });
+
+// ================= Routes =================
 
 fastify.register(authApiRoutes, {
   prefix: '/auth',
@@ -49,6 +50,10 @@ fastify.register(workspaceApiRoutes, {
   prefix: '/workspace',
 });
 
+fastify.register(workspaceInviteApiRoutes, {
+  prefix: '/workspace-invite',
+});
+
 fastify.register(studioApiRoutes, {
   prefix: '/studio',
 });
@@ -56,6 +61,8 @@ fastify.register(studioApiRoutes, {
 fastify.register(sessionApiRoutes, {
   prefix: '/session',
 });
+
+// ==========================================
 
 // if (config.NODE_ENV === 'production') {
 //   fastify.register(fastifyStatic, {
@@ -69,31 +76,8 @@ fastify.register(sessionApiRoutes, {
 //   });
 // }
 
-// fastify.get('/k', { websocket: true }, (connection) => {
-//   // 'connection.socket' is a standard 'ws' library instance
-//   connection.on('message', (message) => {
-//     fastify.log.info(`Received message: ${message}`);
-
-//     connection.send(`Echo: ${message}`);
-//   });
-
-//   // connection.on('getRouterRtpCapabilities', (message) => {
-//   //   fastify.log.info(`Connection established: ${message}`);
-//   //   connection.send(`Echo: ${message}`);
-//   // });
-
-//   connection.on('close', () => {
-//     fastify.log.info('Client disconnected');
-//   });
-// });
-
 // Initialize Mediasoup (for future SFU use)
 // createWorker();
-
-// fastify.get('/k',  (connection) => {
-//   // 'connection.socket' is a standard 'ws' library instance
-
-// });
 
 // Run the Fastify server!
 fastify.listen({ port: config.PORT }, function (err, address) {
