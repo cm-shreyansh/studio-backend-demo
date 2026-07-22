@@ -22,10 +22,17 @@ export default {
   DB_PASSWORD: process.env.DB_PASSWORD ?? '',
   DB_NAME: process.env.DB_NAME!,
 
+  // PeerJS
   PEER_PORT: process.env.PEER_PORT ? parseInt(process.env.PEER_PORT) : 9000,
 
+  // Mediasoup
+  PRIVATE_IP: process.env.PRIVATE_IP || '0.0.0.0',
+  PUBLIC_IP: process.env.PUBLIC_IP || '127.0.0.1',
+
+  // JWT
   JWT_SECRET: process.env.JWT_SECRET!,
 
+  // Email
   RESEND_API_KEY: process.env.RESEND_API_KEY!,
   FROM_EMAIL: process.env.FROM_EMAIL!,
   FRONTEND_URL: process.env.FRONTEND_URL!,

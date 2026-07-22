@@ -2,12 +2,12 @@ import Fastify from 'fastify';
 // import { PeerServer } from 'peer';
 // import createWorker from './config/mediasoup.ts';
 import fastifyCors from '@fastify/cors';
-// import fastifyWebsocket from '@fastify/websocket';
+import fastifyWebsocket from '@fastify/websocket';
 // import fastifyStatic from '@fastify/static';
 
 import config from './config/environment.ts';
-// import { createWorker } from './services/mediasoup.ts';
-// import rtcSocketRoutes from './routes/websocket/rtc.socket.ts';
+import { createWorker } from './services/mediasoup.ts';
+import rtcSocketRoutes from './routes/websocket/rtc.socket.ts';
 
 import authApiRoutes from './routes/api/auth.api.ts';
 import workspaceApiRoutes from './routes/api/workspace.api.ts';
@@ -21,7 +21,7 @@ const fastify = Fastify({
   logger: true,
 });
 
-// const worker = createWorker();
+const worker = createWorker();
 
 fastify.register(fastifyCors, {
   origin: [
@@ -33,7 +33,7 @@ fastify.register(fastifyCors, {
   credentials: true,
 });
 
-// fastify.register(fastifyWebsocket);
+fastify.register(fastifyWebsocket);
 
 // ✅ JWT plugin
 fastify.register(fastifyJwt, {
@@ -60,6 +60,10 @@ fastify.register(studioApiRoutes, {
 
 fastify.register(sessionApiRoutes, {
   prefix: '/session',
+});
+
+fastify.register(rtcSocketRoutes, {
+  worker,
 });
 
 // ==========================================

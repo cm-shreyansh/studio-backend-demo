@@ -5,8 +5,14 @@ export async function authMiddleware(
   reply: FastifyReply
 ) {
   try {
-    await request.jwtVerify();
-  } catch (err) {
+    const payload = await request.jwtVerify<{
+      id?: string;
+      userId?: string;
+      sub?: string;
+    }>();
+
+    request.userId = payload.userId ?? payload.id ?? payload.sub ?? '';
+  } catch {
     return reply.status(401).send({
       success: false,
       message: 'Unauthorized',
